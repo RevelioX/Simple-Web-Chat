@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login_form{
+  border-radius: 20px;
+  background-color: rgb(205, 246, 214);
+  margin: auto auto auto auto;
+  margin-top: 240px;
+  width: 40%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.login_form_image{
+  width: 120px;
+  height: 120px;
+  border-radius: 100px;
+  background-color: white;
+  margin-top: 5px;
+  border-style: solid;
+  border-color: black;
+  margin-bottom: 5px;
+  margin-right: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.login_form_input{
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 20px;
+  margin-right: 40px;
+}
+
+.login_form_button{
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 25px;
+}
+
+@media (max-width: 1100px) {
+  .login_form{
+    width: 70%;
   }
 }
+
+
+@media (max-width: 700px) {
+  .login_form{
+    width: 95%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login_form_image{
+    width: 120px;
+    height: 120px;
+    margin-right: 0px;
+  }
+  
+  .login_form_input{
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 20px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  .login_form_button{
+    margin-bottom: 10px;
+  }
+}
+

@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [userName,setUserName] = useState("")
+
+  function iniciarSesion(e){
+    console.log("Click")
+  }
+  
+  function actualizarInput(e){
+    setUserName(e.target.value)
+    console.log(userName)
+  }
+  
+ return (
+    <div className="login_form">
+      <img className="login_form_image" src="images/generico-usuario.jpg"></img>
+      <input className="login_form_input" type="text" placeholder="Nombre Usuario" onChange={e => actualizarInput(e)}></input>
+      <button className="login_form_button" onClick={e => iniciarSesion(e)}>Inciar Sesión</button>
     </div>
   );
 }
