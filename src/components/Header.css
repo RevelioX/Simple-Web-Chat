@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,400;0,500;1,500&display=swap');
+
+*{
+  font-family: 'Josefin Sans';
+}
+
+.header{
+    /* Created with https://www.css-gradient.com */
+    background: #3DAB62;
+    background: -webkit-linear-gradient(top left, #3DAB62, #010101);
+    background: -moz-linear-gradient(top left, #3DAB62, #010101);
+    background: linear-gradient(to bottom right, #3DAB62, #010101);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    padding-left: 15px;
+}
