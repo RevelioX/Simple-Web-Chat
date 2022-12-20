@@ -1,11 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,400;0,500;1,500&display=swap');
+
+*{
+  font-family: 'Josefin Sans';
+}
+
+html,body{
+  background: #C7E9AE;
+  background: -webkit-linear-gradient(top right, #C7E9AE, #409A67);
+  background: -moz-linear-gradient(top right, #C7E9AE, #409A67);
+  background: linear-gradient(to bottom left, #C7E9AE, #409A67);
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+}
+
+
+
 .login_form{
+  position: fixed;
+  top: 40%;
+  left: 30%;
   border-radius: 20px;
   background-color: rgb(205, 246, 214);
   margin: auto auto auto auto;
-  margin-top: 240px;
+  margin-bottom: 200%;
   width: 40%;
   display: flex;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
 }
 
 .login_form_image{
@@ -14,8 +49,7 @@
   border-radius: 100px;
   background-color: white;
   margin-top: 5px;
-  border-style: solid;
-  border-color: black;
+  border: none;
   margin-bottom: 5px;
   margin-right: 20px;
 }
@@ -25,17 +59,39 @@
   margin-bottom: auto;
   height: 20px;
   margin-right: 40px;
+  border-radius: 10px;
+  padding: 5px;
+  border: none;
 }
 
 .login_form_button{
   margin-top: auto;
   margin-bottom: auto;
   height: 25px;
+  border-radius: 10px;
+  border: none;
+  background: #6AE010;
+  background: -webkit-linear-gradient(right, #6AE010, #409A67);
+  background: -moz-linear-gradient(right, #6AE010, #409A67);
+  background: linear-gradient(to left, #6AE010, #409A67);
+  cursor: pointer;
 }
+
+.login_form_button:hover{
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em #6AE01040;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--hover); }
+}
+
 
 @media (max-width: 1100px) {
   .login_form{
     width: 70%;
+    top: 40%;
+    left: 15%;
   }
 }
 
@@ -45,6 +101,8 @@
     width: 95%;
     flex-direction: column;
     align-items: center;
+    top: 30%;
+    left: 2%;
   }
 
   .login_form_image{
