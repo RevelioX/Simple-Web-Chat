@@ -5,9 +5,7 @@ import Header from './components/Header.js';
 import Chat from './components/Chat.js'
 import {
   createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
+  RouterProvider
 } from "react-router-dom";
 
 const router = createBrowserRouter([

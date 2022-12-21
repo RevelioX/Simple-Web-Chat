@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import { useCookies } from 'react-cookie';
 
 export default function Login(){
     const [userName,setUserName] = useState("")
     const [errors,setErrors] = useState("");
+    const [cookies, setCookies,removeCookies] = useCookies(['userName']);
   
     function iniciarSesion(e){
         let error = false
@@ -21,7 +23,7 @@ export default function Login(){
         if(error){
             return
         }
-        console.log("Funciona");
+        setCookies('userName',userName,{path:'/'});
     }
     
     function actualizarInput(e){
