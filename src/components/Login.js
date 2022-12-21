@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import { useCookies } from 'react-cookie';
+import { Navigate } from 'react-router';
 
 export default function Login(){
     const [userName,setUserName] = useState("")
     const [errors,setErrors] = useState("");
     const [cookies, setCookies,removeCookies] = useCookies(['userName']);
+    const [moveToChat,setMoveToChat] = useState(false);
   
     function iniciarSesion(e){
         let error = false
@@ -24,6 +26,8 @@ export default function Login(){
             return
         }
         setCookies('userName',userName,{path:'/'});
+        setMoveToChat(true);
+
     }
     
     function actualizarInput(e){
@@ -33,6 +37,7 @@ export default function Login(){
 
     return(
     <div>
+    {(moveToChat||cookies.userName) && <Navigate to="/chat"></Navigate>}
     <div className="login_form">
       <img className="login_form_image" src="images/generico-usuario.jpg"></img>
       <input className="login_form_input" type="text" placeholder="Nombre Usuario" onChange={e => actualizarInput(e)}></input>

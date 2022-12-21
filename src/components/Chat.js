@@ -1,21 +1,18 @@
 import React, {useState} from 'react';
 import './Chat.css';
 import { useCookies } from 'react-cookie';
-import { redirect } from 'react-router';
+import { useNavigate, Navigate, redirect, useLocation } from 'react-router';
 
 export default function Chat(){
-    const [cookies, setCookie] = useCookies(['userName']);
-
-    redirect("/");
-    
-
+    const [cookies, setCookie,removeCookies] = useCookies(['userName']);   
+    const location = useLocation();
     function borrarUserName(e){
-        setCookie("userName","",{path: "/"});
+        removeCookies("userName");
     }
 
     return(
         <div>
-        <h2>{cookies.userName && "Soy el chat" + cookies.userName}</h2>
+        {cookies.userName ? <h2>{"Soy el chat" + cookies.userName}</h2> : <Navigate to="/"></Navigate>}
         <button onClick={borrarUserName}>Borrar Nombre</button>
         </div>
     )
