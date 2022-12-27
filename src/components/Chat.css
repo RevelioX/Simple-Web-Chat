@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,400;0,500;1,500&display=swap');
+
+*{
+  font-family: 'Josefin Sans';
+}
+
+html,body{
+    background: #C7E9AE;
+    background: -webkit-linear-gradient(top right, #C7E9AE, #409A67);
+    background: -moz-linear-gradient(top right, #C7E9AE, #409A67);
+    background: linear-gradient(to bottom left, #C7E9AE, #409A67);
+    overflow: hidden;
+    margin: 0;
+    height: 100%;
+}
+
+.chat{
+    background-color: white;
+    position: fixed;
+    top: 40%;
+    left: 30%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap:10px;
+}
+
+.chat_principal{
+    display: flex;
+    flex-direction: row;
+}
+
+.chat_connected_users{
+    display:flex;
+    flex-direction: column;
+}
+
+.chat_messages{
+    display: flex;
+    flex-direction: column;
+}
