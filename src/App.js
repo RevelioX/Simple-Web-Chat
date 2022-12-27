@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
+import SocketClient from "socket.io-client";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   }
 ])
 function App() {
+  const socket = SocketClient("http://localhost:3080");
 
  return (
   <div>

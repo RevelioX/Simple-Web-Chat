@@ -2,14 +2,48 @@ import React, {useState,useEffect} from 'react';
 import './Chat.css';
 import { useCookies } from 'react-cookie';
 import { useNavigate, Navigate, redirect, useLocation } from 'react-router';
+import io from 'socket.io-client';
+
+const socket = io("http://localhost:3080",{
+    withCredentials: true,
+    extraHeaders: {
+    "my-custom-header": "abcd"}}
+    );
 
 export default function Chat(){
+    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [lastPong, setLastPong] = useState(null);
+
+
     const usuarios = ["Pedrito","Juanito","Robertoide","Anastasioide"]
     const [connectedUsers,setConnectedUsers] = useState(usuarios.map( (user,index) => <p id={index}>{user}</p>));
+    const [data,setData] = useState();
     const [chatMessages,setChatMessages] = useState();
     const [cookies, setCookie,removeCookies] = useCookies(['userName']);   
     const location = useLocation();
     const [message,setMessage] = useState("");
+
+    useEffect(() => {
+        socket.on('connect', () => {
+          setIsConnected(true);
+        });
+    
+        socket.on('disconnect', () => {
+          setIsConnected(false);
+        });
+    
+        socket.on('pong', () => {
+          setLastPong(new Date().toISOString());
+        });
+    
+        return () => {
+          socket.off('connect');
+          socket.off('disconnect');
+          socket.off('pong');
+        };
+      }, []);
+
+
 
     useEffect(
         () => {
@@ -20,10 +54,15 @@ export default function Chat(){
                     return response.json()
                 }
             })
-            .then( res => setChatMessages(res))
+            .then( res => setData(res))
             .catch(err => console.log(err))
-        }    
+        }  
+          
         ,[])
+
+        useEffect(  ()=>{ if(data){
+            setChatMessages( data["messages"].map( dato => <p className="message">{dato["author"]}: {dato["text"]}</p>))}
+        },[data])
     
     function actualizeMessage(e){
         setMessage(e.target.value);
@@ -48,6 +87,11 @@ export default function Chat(){
                     "author" : (cookies.userName)
                 })
             });
+            socket.emit("message",JSON.stringify({
+                "text" : (message),
+                "date" : (Date.now()),
+                "author" : (cookies.userName)
+            }))
             setMessage("");
         } catch(err){
             console.log(err);
@@ -62,12 +106,14 @@ export default function Chat(){
         <button onClick={borrarUserName}>Borrar Nombre</button>
         <div className="chat">
             <h2 className="chat_title">#General</h2>
-            <div chat="chat_principal">
+            <div className="chat_principal">
             <div className="chat_connected_users">
             {connectedUsers}
             </div>
             <div className="chat_messages">
-            {JSON.stringify(chatMessages)}
+                <div className="chat_messages_list">
+            {chatMessages}
+            </div>
             <form onSubmit={sendMessage}>
             <input type="text" onChange={actualizeMessage} value={message}></input>
             <input type="submit"></input>
